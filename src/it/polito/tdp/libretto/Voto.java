@@ -1,6 +1,6 @@
 package it.polito.tdp.libretto;
 
-// POJO
+// POJO: Plain Old Java Object
 
 public class Voto implements Comparable<Voto> {
 
@@ -11,7 +11,7 @@ public class Voto implements Comparable<Voto> {
 	public Voto(String esame, int voto) {
 		super();
 		this.esame = esame;
-		this.voto = voto;
+		this.voto = voto; // oppure setVoto(voto);
 	}
 
 	public String getEsame() {

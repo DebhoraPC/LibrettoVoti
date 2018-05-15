@@ -12,23 +12,24 @@ public class Libretto {
 	}
 
 	public Libretto(List<Voto> voti) {
-		// #1 ERRORE: shallow copy della lista
+		// ERRORE #1: shallow copy della lista
 		// this.voti = voti;
 
-		// #2 ERRORE: shallow copy degli oggetti Voti all'interno della lista
+		// ERRORE #2: shallow copy degli oggetti Voti all'interno della lista
 		// this.voti = new ArrayList<Voto>(voti);
 
-		// #3, come il #2
-		// this.voti = new ArrayList<Voto>();
+		// ESSORE #3 (COME IL #2)
+		 this.voti = new ArrayList<Voto>();
 		// for (Voto v : voti) {
-		// this.voti.add(v);
+		//	 this.voti.add(v);
 		// }
 
-		// #4 VERSIONE CORRETTA
+		// VERSIONE CORRETTA: DEEP COPY
 		this.voti = new ArrayList<Voto>();
 		for (Voto v : voti) {
 			this.voti.add(new Voto(v.getEsame(), v.getVoto()));
 		}
+		
 	}
 
 	public void add(Voto v) {
@@ -80,7 +81,7 @@ public class Libretto {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Ci sono " + voti.size() + " voti\n");
 		for (Voto v : this.voti) {
-			sb.append(v.toString());
+			sb.append(v);
 			sb.append("\n");
 		}
 		return sb.toString();
@@ -94,10 +95,22 @@ public class Libretto {
 			// }
 
 			// VERSIONE CORRETTA
+			// esame.toLowerCase().equals(esameCercato.toLowerCase()) 
+			// esame.equalsIgnoreCase(esameCercato)
 			if (v.getEsame().toLowerCase().equals(nomeCorso.toLowerCase())) {
 				return String.valueOf(v.getVoto());
 			}
 		}
-		return "nomeCorso not found";
+		return nomeCorso + " non trovato!";
 	}
+
+	public void cancella24() {
+		
+		for (int i = 0; i < voti.size(); i++) {
+			if (voti.get(i).getVoto() < 24)
+				voti.remove(i);
+		}
+		
+	}
+	
 }
